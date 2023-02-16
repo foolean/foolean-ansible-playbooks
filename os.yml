@@ -27,6 +27,7 @@
 # are committed before we start doing anything
 - name: Run etckeeper pre-commit
   hosts: all
+  gather_facts: false
   tasks:
     - name: Run etckeeper pre-commit
       ansible.builtin.import_tasks:
@@ -45,6 +46,7 @@
 # are committed now that we have finished
 - name: Run etckeeper post-commit
   hosts: all
+  gather_facts: false
   tasks:
     - name: Run etckeeper post-commit
       ansible.builtin.import_tasks:
