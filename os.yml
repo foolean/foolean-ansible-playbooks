@@ -1,0 +1,51 @@
+# Copyright (c) 2023, Bennett Samowich <bennett@foolean.org>
+# All rights reserved
+# SPDX short identifier: BSD-3-Clause
+###############################################################################
+#
+# playbook: os.yml
+#
+#   Ansible playbook for common operating system configuration
+#
+###############################################################################
+---
+
+
+# Ensure that the nodes are available
+# Useful if we're being run from an automation
+# tool such as Packer or Terraform
+- name: Wait until the systems are available
+  hosts: all
+  gather_facts: false # important
+  tasks:
+    - name: Wait for system to become reachable
+      ansible.builtin.wait_for_connection:
+        timeout: 300
+
+
+# Ensure that any uncommitted changes in /etc
+# are committed before we start doing anything
+- name: Run etckeeper pre-commit
+  hosts: all
+  tasks:
+    - name: Run etckeeper pre-commit
+      ansible.builtin.import_tasks:
+        file: "{{ ansible_config_file | dirname }}/roles/foolean/etckeeper/tasks/pre-commit.yml"
+
+
+- name: Playbook for baseline OS configuration
+  hosts: all
+  roles:
+    # Install and configure etckeeper to track changes
+    - role: foolean/etckeeper
+      tags: [foolean_etckeeper]
+
+
+# Ensure that any uncommitted changes in /etc
+# are committed now that we have finished
+- name: Run etckeeper post-commit
+  hosts: all
+  tasks:
+    - name: Run etckeeper post-commit
+      ansible.builtin.import_tasks:
+        file: '{{ ansible_config_file | dirname }}/roles/foolean/etckeeper/tasks/post-commit.yml'
