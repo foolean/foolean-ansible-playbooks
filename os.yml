@@ -37,6 +37,8 @@
 - name: Playbook for baseline OS configuration
   hosts: all
   roles:
+    # Set RedHat subscriptions
+    - role: foolean/redhat
     # Install and configure etckeeper to track changes
     - role: foolean/etckeeper
       tags: [foolean_etckeeper]
@@ -46,6 +48,7 @@
     - role: foolean/udf
     - role: foolean/usb
     - role: foolean/mounts
+    - role: foolean/systemd
 
 
 # Ensure that any uncommitted changes in /etc
