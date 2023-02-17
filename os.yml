@@ -42,6 +42,8 @@
       tags: [foolean_etckeeper]
     - role: foolean/cramfs
     - role: foolean/squashfs
+    - role: foolean/udf
+    - role: foolean/filesystems
 
 
 # Ensure that any uncommitted changes in /etc
