@@ -43,7 +43,7 @@
     - role: foolean/cramfs
     - role: foolean/squashfs
     - role: foolean/udf
-    - role: foolean/filesystems
+    - role: foolean/mounts
 
 
 # Ensure that any uncommitted changes in /etc
