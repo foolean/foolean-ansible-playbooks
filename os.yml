@@ -40,6 +40,7 @@
     # Install and configure etckeeper to track changes
     - role: foolean/etckeeper
       tags: [foolean_etckeeper]
+    - role: foolean/autofs
     - role: foolean/cramfs
     - role: foolean/squashfs
     - role: foolean/udf
