@@ -49,6 +49,7 @@
     - role: foolean/usb
     - role: foolean/mounts
     - role: foolean/systemd
+    - role: foolean/sysctl
 
 
 # Ensure that any uncommitted changes in /etc
