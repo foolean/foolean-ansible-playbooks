@@ -44,6 +44,7 @@
       tags: [foolean_etckeeper]
     - role: foolean/autofs
     - role: foolean/banner
+    - role: foolean/chrony
     - role: foolean/cramfs
     - role: foolean/squashfs
     - role: foolean/udf
