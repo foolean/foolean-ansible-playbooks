@@ -53,7 +53,17 @@
     - role: foolean/selinux
     - role: foolean/sysctl
     - role: foolean/systemd
-
+    - role: foolean/xinetd
+    - role: foolean/xserver
+    - role: foolean/avahi
+    - role: foolean/cups
+    - role: foolean/dhcp
+    - role: foolean/dns
+    - role: foolean/ftp
+    - role: foolean/tftp
+    - role: foolean/proftp
+    - role: foolean/apache2
+    - role: foolean/nginx
 
 # Ensure that any uncommitted changes in /etc
 # are committed now that we have finished
