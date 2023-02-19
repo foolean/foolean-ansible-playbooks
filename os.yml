@@ -32,6 +32,7 @@
     - name: Run etckeeper pre-commit
       ansible.builtin.import_tasks:
         file: "{{ ansible_config_file | dirname }}/roles/foolean/etckeeper/tasks/pre-commit.yml"
+      when: not ansible_check_mode
 
 
 - name: Playbook for baseline OS configuration
@@ -64,6 +65,11 @@
     - role: foolean/proftp
     - role: foolean/apache2
     - role: foolean/nginx
+    - role: foolean/dovecot
+    - role: foolean/cyrusimap
+    - role: foolean/samba
+    - role: foolean/snmp
+
 
 # Ensure that any uncommitted changes in /etc
 # are committed now that we have finished
@@ -74,3 +80,4 @@
     - name: Run etckeeper post-commit
       ansible.builtin.import_tasks:
         file: '{{ ansible_config_file | dirname }}/roles/foolean/etckeeper/tasks/post-commit.yml'
+      when: not ansible_check_mode
