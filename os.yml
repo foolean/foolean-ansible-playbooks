@@ -71,6 +71,12 @@
     - role: foolean/snmp
     - role: foolean/rsync
     - role: foolean/nfs
+    - role: foolean/postfix
+    - role: foolean/rsh
+    - role: foolean/talk
+    - role: foolean/telnet
+    - role: foolean/ldap
+    - role: foolean/network
 
 
 # Ensure that any uncommitted changes in /etc
