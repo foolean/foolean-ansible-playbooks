@@ -43,45 +43,51 @@
     # Install and configure etckeeper to track changes
     - role: foolean/etckeeper
       tags: [foolean_etckeeper]
+    # Configure the base OS
+    - role: foolean/apache2
     - role: foolean/autofs
+    - role: foolean/avahi
     - role: foolean/banner
+    - role: foolean/bash
     - role: foolean/chrony
     - role: foolean/cramfs
-    - role: foolean/squashfs
-    - role: foolean/udf
-    - role: foolean/usb
-    - role: foolean/mounts
-    - role: foolean/selinux
-    - role: foolean/sysctl
-    - role: foolean/systemd
-    - role: foolean/xinetd
-    - role: foolean/xserver
-    - role: foolean/avahi
+    - role: foolean/cron
     - role: foolean/cups
+    - role: foolean/cyrusimap
     - role: foolean/dhcp
     - role: foolean/dns
-    - role: foolean/ftp
-    - role: foolean/tftp
-    - role: foolean/proftp
-    - role: foolean/apache2
-    - role: foolean/nginx
     - role: foolean/dovecot
-    - role: foolean/cyrusimap
-    - role: foolean/samba
-    - role: foolean/snmp
-    - role: foolean/rsync
+    - role: foolean/firewall
+    - role: foolean/ftp
+    - role: foolean/ldap
+    - role: foolean/logindefs
+    - role: foolean/mounts
+    - role: foolean/network
     - role: foolean/nfs
+    - role: foolean/nginx
+    - role: foolean/pam
     - role: foolean/postfix
+    - role: foolean/proftp
+    - role: foolean/root
     - role: foolean/rsh
+    - role: foolean/rsync
+    - role: foolean/rsyslog
+    - role: foolean/samba
+    - role: foolean/selinux
+    - role: foolean/snmp
+    - role: foolean/squashfs
+    - role: foolean/sudo
+    - role: foolean/sysctl
+    - role: foolean/system
+    - role: foolean/systemd
     - role: foolean/talk
     - role: foolean/telnet
-    - role: foolean/ldap
-    - role: foolean/network
-    - role: foolean/firewall
-    - role: foolean/cron
-    - role: foolean/rsyslog
-    - role: foolean/system
-    - role: foolean/sudo
+    - role: foolean/tftp
+    - role: foolean/udf
+    - role: foolean/usb
+    - role: foolean/xinetd
+    - role: foolean/xserver
+
 
 # Ensure that any uncommitted changes in /etc
 # are committed now that we have finished
