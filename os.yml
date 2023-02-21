@@ -80,7 +80,8 @@
     - role: foolean/firewall
     - role: foolean/cron
     - role: foolean/rsyslog
-
+    - role: foolean/system
+    - role: foolean/sudo
 
 # Ensure that any uncommitted changes in /etc
 # are committed now that we have finished
