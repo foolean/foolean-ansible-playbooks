@@ -45,6 +45,7 @@
       tags: [foolean_etckeeper]
     # Configure the base OS
     - role: foolean/apache2
+    - role: foolean/auditd
     - role: foolean/autofs
     - role: foolean/avahi
     - role: foolean/banner
