@@ -76,6 +76,7 @@
     - role: foolean/selinux
     - role: foolean/snmp
     - role: foolean/squashfs
+    - role: foolean/ssh
     - role: foolean/sudo
     - role: foolean/sysctl
     - role: foolean/system
