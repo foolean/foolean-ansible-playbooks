@@ -43,12 +43,14 @@
     # Install and configure etckeeper to track changes
     - role: foolean/etckeeper
     # Configure the base OS
+    - role: foolean/aide
     - role: foolean/apache2
     - role: foolean/auditd
     - role: foolean/autofs
     - role: foolean/avahi
     - role: foolean/banner
     - role: foolean/bash
+    - role: foolean/bootloader
     - role: foolean/chrony
     - role: foolean/cramfs
     - role: foolean/cron
