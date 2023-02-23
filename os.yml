@@ -16,7 +16,7 @@
 # tool such as Packer or Terraform
 - name: Wait until the systems are available
   hosts: all
-  gather_facts: false # important
+  gather_facts: false   # important
   tasks:
     - name: Wait for system to become reachable
       ansible.builtin.wait_for_connection:
@@ -42,7 +42,6 @@
     - role: foolean/redhat
     # Install and configure etckeeper to track changes
     - role: foolean/etckeeper
-      tags: [foolean_etckeeper]
     # Configure the base OS
     - role: foolean/apache2
     - role: foolean/auditd
@@ -60,6 +59,7 @@
     - role: foolean/dovecot
     - role: foolean/firewall
     - role: foolean/ftp
+    - role: foolean/gnome
     - role: foolean/ldap
     - role: foolean/logindefs
     - role: foolean/mounts
