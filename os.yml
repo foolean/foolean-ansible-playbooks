@@ -45,6 +45,7 @@
     # Configure the base OS
     - role: foolean/aide
     - role: foolean/apache2
+    - role: foolean/apparmor
     - role: foolean/auditd
     - role: foolean/autofs
     - role: foolean/avahi
@@ -57,17 +58,20 @@
     - role: foolean/cups
     - role: foolean/cyrusimap
     - role: foolean/dhcp
+    - role: foolean/debian
     - role: foolean/dns
     - role: foolean/dovecot
     - role: foolean/firewall
     - role: foolean/ftp
     - role: foolean/gnome
     - role: foolean/ldap
+    - role: foolean/limits
     - role: foolean/logindefs
     - role: foolean/mounts
     - role: foolean/network
     - role: foolean/nfs
     - role: foolean/nginx
+    - role: foolean/nis
     - role: foolean/pam
     - role: foolean/postfix
     - role: foolean/proftp
@@ -80,6 +84,7 @@
     - role: foolean/snmp
     - role: foolean/squashfs
     - role: foolean/ssh
+    - role: foolean/squid
     - role: foolean/sudo
     - role: foolean/sysctl
     - role: foolean/system
@@ -88,6 +93,7 @@
     - role: foolean/telnet
     - role: foolean/tftp
     - role: foolean/udf
+    - role: foolean/ufw
     - role: foolean/usb
     - role: foolean/xinetd
     - role: foolean/xserver
