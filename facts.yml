@@ -1,0 +1,53 @@
+# Copyright (c) 2023, Bennett Samowich <bennett@foolean.org>
+# All rights reserved
+# SPDX short identifier: BSD-3-Clause
+###############################################################################
+#
+# playbook: os.yml
+#
+#   Ansible playbook for common operating system configuration
+#
+###############################################################################
+---
+
+
+# Ensure that the nodes are available
+# Useful if we're being run from an automation
+# tool such as Packer or Terraform
+- name: Wait until the systems are available
+  hosts: all
+  gather_facts: false   # important
+  tasks:
+    - name: Wait for system to become reachable
+      ansible.builtin.wait_for_connection:
+        timeout: 300
+
+    - name: Print some debug information
+      vars:
+        msg: |
+          Module Variables ("vars"):
+          --------------------------------
+          {{ vars | to_nice_json }}
+
+          Environment Variables ("environment"):
+          --------------------------------
+          {{ environment | to_nice_json }}
+
+          GROUP NAMES Variables ("group_names"):
+          --------------------------------
+          {{ group_names | to_nice_json }}
+
+          GROUPS Variables ("groups"):
+          --------------------------------
+          {{ groups | to_nice_json }}
+
+          HOST Variables ("hostvars"):
+          --------------------------------
+          {{ hostvars | to_nice_json }}
+
+      debug:
+        msg: "{{ msg.split('\n') }}"
+
+    - name: Display all variables/facts known for a host
+      ansible.builtin.debug:
+        var: hostvars
