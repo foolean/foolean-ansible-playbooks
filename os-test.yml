@@ -22,6 +22,7 @@
       ansible.builtin.wait_for_connection:
         timeout: 300
 
+
 # Ensure that any uncommitted changes in /etc
 # are committed before we start doing anything
 - name: Run etckeeper pre-commit
@@ -32,18 +33,6 @@
       ansible.builtin.import_tasks:
         file: "{{ ansible_config_file | dirname }}/roles/foolean/etckeeper/tasks/pre-commit.yml"
       when: not ansible_check_mode
-
-    - name: Print ansible_user
-      ansible.builtin.debug:
-        msg: "Ansible user is '{{ ansible_user }}'"
-
-- name: Ansible | List all known variables and facts
-  hosts: all
-  gather_facts: true
-  tasks:
-  - name: Ansible | List all known variables and facts
-    ansible.builtin.debug:
-      var: hostvars[inventory_hostname]
 
 
 - name: Playbook for baseline OS configuration
@@ -56,7 +45,7 @@
     # Configure the base OS
     - role: foolean/aide
     - role: foolean/apache2
-    #    - role: foolean/apparmor
+    - role: foolean/apparmor
     - role: foolean/auditd
     - role: foolean/autofs
     - role: foolean/avahi
@@ -83,7 +72,7 @@
     - role: foolean/nfs
     - role: foolean/nginx
     - role: foolean/nis
-    #    - role: foolean/pam
+    - role: foolean/pam
     - role: foolean/postfix
     - role: foolean/proftp
     - role: foolean/root
@@ -94,9 +83,9 @@
     - role: foolean/selinux
     - role: foolean/snmp
     - role: foolean/squashfs
-    #    - role: foolean/ssh
+    - role: foolean/ssh
     - role: foolean/squid
-    #    - role: foolean/sudo
+    - role: foolean/sudo
     - role: foolean/sysctl
     - role: foolean/system
     - role: foolean/systemd
@@ -104,6 +93,7 @@
     - role: foolean/telnet
     - role: foolean/tftp
     - role: foolean/udf
+    - role: foolean/ufw
     - role: foolean/usb
     - role: foolean/xinetd
     - role: foolean/xserver
