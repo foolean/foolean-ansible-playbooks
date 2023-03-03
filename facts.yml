@@ -22,9 +22,26 @@
       ansible.builtin.wait_for_connection:
         timeout: 300
 
+    - name: Collecting package facts
+      become: true
+      ansible.builtin.package_facts:
+        manager: auto
+      when:
+        - "ansible_facts.packages is not defined"
+
+    - name: Collecting service facts
+      become: true
+      ansible.builtin.service_facts:
+      when:
+        - "ansible_facts.services is not defined"
+
     - name: Print some debug information
       vars:
         msg: |
+          Facts:
+          --------------------------------
+          {{ ansible_facts | to_nice_json }}
+
           Module Variables ("vars"):
           --------------------------------
           {{ vars | to_nice_json }}
