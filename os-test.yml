@@ -1,0 +1,121 @@
+# Copyright (c) 2023, Bennett Samowich <bennett@foolean.org>
+# All rights reserved
+# SPDX short identifier: BSD-3-Clause
+###############################################################################
+#
+# playbook: os.yml
+#
+#   Ansible playbook for common operating system configuration
+#
+###############################################################################
+---
+
+
+# Ensure that the nodes are available
+# Useful if we're being run from an automation
+# tool such as Packer or Terraform
+- name: Wait until the systems are available
+  hosts: all
+  gather_facts: false   # important
+  tasks:
+    - name: Wait for system to become reachable
+      ansible.builtin.wait_for_connection:
+        timeout: 300
+
+# Ensure that any uncommitted changes in /etc
+# are committed before we start doing anything
+- name: Run etckeeper pre-commit
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Run etckeeper pre-commit
+      ansible.builtin.import_tasks:
+        file: "{{ ansible_config_file | dirname }}/roles/foolean/etckeeper/tasks/pre-commit.yml"
+      when: not ansible_check_mode
+
+    - name: Print ansible_user
+      ansible.builtin.debug:
+        msg: "Ansible user is '{{ ansible_user }}'"
+
+- name: Ansible | List all known variables and facts
+  hosts: all
+  gather_facts: true
+  tasks:
+  - name: Ansible | List all known variables and facts
+    ansible.builtin.debug:
+      var: hostvars[inventory_hostname]
+
+
+- name: Playbook for baseline OS configuration
+  hosts: all
+  roles:
+    # Set RedHat subscriptions
+    - role: foolean/redhat
+    # Install and configure etckeeper to track changes
+    - role: foolean/etckeeper
+    # Configure the base OS
+    - role: foolean/aide
+    - role: foolean/apache2
+    #    - role: foolean/apparmor
+    - role: foolean/auditd
+    - role: foolean/autofs
+    - role: foolean/avahi
+    - role: foolean/banner
+    - role: foolean/bash
+    - role: foolean/bootloader
+    - role: foolean/chrony
+    - role: foolean/cramfs
+    - role: foolean/cron
+    - role: foolean/cups
+    - role: foolean/cyrusimap
+    - role: foolean/dhcp
+    - role: foolean/debian
+    - role: foolean/dns
+    - role: foolean/dovecot
+    - role: foolean/firewall
+    - role: foolean/ftp
+    - role: foolean/gnome
+    - role: foolean/ldap
+    - role: foolean/limits
+    - role: foolean/logindefs
+    - role: foolean/mounts
+    - role: foolean/network
+    - role: foolean/nfs
+    - role: foolean/nginx
+    - role: foolean/nis
+    #    - role: foolean/pam
+    - role: foolean/postfix
+    - role: foolean/proftp
+    - role: foolean/root
+    - role: foolean/rsh
+    - role: foolean/rsync
+    - role: foolean/rsyslog
+    - role: foolean/samba
+    - role: foolean/selinux
+    - role: foolean/snmp
+    - role: foolean/squashfs
+    #    - role: foolean/ssh
+    - role: foolean/squid
+    #    - role: foolean/sudo
+    - role: foolean/sysctl
+    - role: foolean/system
+    - role: foolean/systemd
+    - role: foolean/talk
+    - role: foolean/telnet
+    - role: foolean/tftp
+    - role: foolean/udf
+    - role: foolean/usb
+    - role: foolean/xinetd
+    - role: foolean/xserver
+
+
+# Ensure that any uncommitted changes in /etc
+# are committed now that we have finished
+- name: Run etckeeper post-commit
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Run etckeeper post-commit
+      ansible.builtin.import_tasks:
+        file: '{{ ansible_config_file | dirname }}/roles/foolean/etckeeper/tasks/post-commit.yml'
+      when: not ansible_check_mode
