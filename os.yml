@@ -40,6 +40,8 @@
   roles:
     # Set RedHat subscriptions
     - role: foolean/redhat
+    # Configure package managers
+    - role: foolean/apt
     # Install and configure etckeeper to track changes
     - role: foolean/etckeeper
     # Configure the base OS
