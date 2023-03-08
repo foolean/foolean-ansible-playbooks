@@ -99,7 +99,9 @@
     - role: foolean/usb
     - role: foolean/xinetd
     - role: foolean/xserver
-
+    # Useful tools
+    - role: foolean/screen
+    - role: foolean/utils
 
 # Ensure that any uncommitted changes in /etc
 # are committed now that we have finished
