@@ -1,17 +1,22 @@
 # foolean-ansible-playbooks
 
-Collection of Foolean playbooks
+    Collection of Foolean playbooks
 
 
 ## Usage
 
     * clone this repo into '/path/to/your/ansible/playbooks/foolean'
-    * run `git submodule update --init
 
 
-## Ansible structure
+## Playbooks
 
-    ansible/          <-- foolean-ansible super-project
+    os.yml          Base operating system playbook
+    os-test.yml     Base operating system "testing" playbook
+
+
+## Expected structure
+
+    ansible/
     |-- inventory/
     |   |-- group_vars/
     |   `-- host_vars/
@@ -23,4 +28,4 @@ Collection of Foolean playbooks
 
 ## License
 
-BSD-3-Clause
+    BSD-3-Clause
