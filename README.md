@@ -12,6 +12,7 @@
 
     os.yml          Base operating system playbook
     os-test.yml     Base operating system "testing" playbook
+    kodi.yml        Kodi device (imports os.yml)
 
 
 ## Expected structure
