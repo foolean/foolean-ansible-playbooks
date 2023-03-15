@@ -36,6 +36,7 @@
 
 
 - name: Playbook for baseline OS configuration
+  become: true
   hosts: all
   roles:
     # Set RedHat subscriptions
@@ -55,6 +56,7 @@
     - role: foolean/bash
     - role: foolean/bootloader
     - role: foolean/chrony
+    - role: foolean/clock
     - role: foolean/cramfs
     - role: foolean/cron
     - role: foolean/cups
@@ -68,6 +70,7 @@
     - role: foolean/gnome
     - role: foolean/ldap
     - role: foolean/limits
+    - role: foolean/locales
     - role: foolean/logindefs
     - role: foolean/mounts
     - role: foolean/network
